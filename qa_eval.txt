@@ -1,0 +1,57 @@
+## Example 1
+### Claim
+In the context of "Romeo and Juliet," written by William Shakespeare in 1590, the two feuding families are the Bennets and the Darcys.
+### Choices
+- True
+- False
+### Thought Process and Answer
+Thought process: The feuding families in "Romeo and Juliet" are the Montagues and the Capulets, not the Bennets and Darcys. The Bennets and Darcys are characters from "Pride and Prejudice" by Jane Austen.
+Answer: False.
+
+## Example 2
+### Claim
+In the context of "Brave New World," written by Aldous Huxley in 1932, Soma is used in the society to control citizens’ happiness.
+### Choices
+- True
+- False
+### Thought Process and Answer
+Thought process: In "Brave New World," Soma is indeed used as a substance to control citizens’ happiness and maintain social order. The claim is accurate.
+Answer: True.
+
+## Example 3
+### Claim
+In the context of "1984," written by George Orwell in 1949, Emmanuel Goldstein is the totalitarian leader.
+### Choices
+- True
+- False
+### Thought Process and Answer
+Thought process: In "1984," the totalitarian leader is Big Brother, not Emmanuel Goldstein. Goldstein is a character who represents a supposed enemy of the Party, but he is not the leader.
+Answer: False.
+
+## Example 4
+### Claim
+In the context of "Moby-Dick," written by Herman Melville in 1851, the ship’s captain obsessed with hunting the titular whale is Captain Ahab.
+### Choices
+- True
+- False
+### Thought Process and Answer
+Thought process: Captain Ahab is the ship's captain in "Moby-Dick" who is obsessed with hunting the whale, making this claim true.
+Answer: True.
+
+## Example 5
+### Claim
+In the context of "Les Misérables," written by Victor Hugo in 1862, the main setting of the novel is Paris.
+### Choices
+- True
+- False
+### Thought Process and Answer
+Thought process: "Les Misérables" is primarily set in Paris, making the claim true. Other cities such as London, Madrid, and Rome are not the main settings in the novel.
+Answer: True.
+
+## Example 6
+### Claim
+In the context of "Spaceman on a Spree," written by Mack Reynolds in 1961, Seymour Pond retired at the age of 30.
+### Choices
+- True
+- False
+### Thought Process and Answer

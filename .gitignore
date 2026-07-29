@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Experiment tracking (223M of local run history)
+wandb/
+scripts/wandb/
+
+# Datasets and tokenized bins (9.7G - far too large for GitHub)
+data/dataset/
+
+# Logs and job output
+*.log
+*.out
+*.err
+run.log
+
+# Model checkpoints / outputs
+out/
+
+# Gradio local cache
+.gradio/
