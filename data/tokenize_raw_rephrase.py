@@ -56,7 +56,7 @@ def tokenize_list(text_list: List[str]) -> List[int]:
     random.shuffle(text_list)
     # tokenizer = get_tokenizer("meta-llama/Meta-Llama-3-8B")
     # tokenizer = get_tokenizer("Qwen/Qwen3-4B-Base")
-    tokenizer = get_tokenizer("allenai/Olmo-3-1025-7B")
+    tokenizer = get_tokenizer("Qwen/Qwen3-30B-A3B-Base")
     all_ids = []
     for text in tqdm(text_list):
         if text:
@@ -93,7 +93,7 @@ def tokenize_quality_graph():
     # all_text = tokenize_raw("/home/aa2886/Marcus_CPT/data/dataset/raw/quality_FULL_6x.json")
     # write_to_memmap_single(tokenize_list(all_text), 'quality_full_raw6_qwen.bin')
     all_text = tokenize_raw("/home/aa2886/Marcus_CPT/data/dataset/raw/quality_FULL_9x.json")
-    write_to_memmap_single(tokenize_list(all_text), 'quality_full_raw9_olmo.bin')
+    write_to_memmap_single(tokenize_list(all_text), 'quality_full_raw9_qwenMOE.bin')
 
 
 if __name__ == '__main__':

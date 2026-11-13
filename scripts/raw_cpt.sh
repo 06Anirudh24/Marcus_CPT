@@ -15,7 +15,7 @@ echo "Running on $(hostname)"
 nvidia-smi
 
 bash /home/aa2886/Marcus_CPT/scripts/train.sh \
-    --lr 4e-05 \
+    --lr 5e-05 \
     --rr 0.15 \
     --epochs 1 \
     --bs 16 \

@@ -25,15 +25,20 @@ def _get_bin(task_name: str, split: str):
         'quality_full_raw9_qwen': f'{bin_data_dir}/quality_full_raw9_qwen.bin',
         'quality_full_raw9_llama': f'{bin_data_dir}/quality_full_raw9_llama.bin',
         'quality_full_raw9_olmo': f'{bin_data_dir}/quality_full_raw9_olmo.bin',
-
+        'quality_full_raw9_olmoe': f'{bin_data_dir}/quality_full_raw9_olmoe.bin',
+        'quality_full_raw9_qwenMOE': f'{bin_data_dir}/quality_full_raw9_qwenMOE.bin',
     }
     implemented_rehersal_split = {
         'rpj-train': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_train.bin',
         'rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test.bin',
         'olmo-rpj-train': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_train_olmo.bin',
         'olmo-rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test_olmo.bin',
+        'olmoe-rpj-train': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_train_olmoe.bin',
+        'olmoe-rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test_olmoe.bin',
 	    'qwen-rpj-train': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_train_qwen.bin',
-        'qwen-rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test_qwen.bin'
+        'qwen-rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test_qwen.bin',
+        'qwenMOE-rpj-train': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_train_qwenMOE.bin',
+        'qwenMOE-rpj-test': f'{bin_data_dir}/togethercomputer_RedPajama_Data_1T_Sample_test_qwenMOE.bin'
     }
     implemented_instruct_split = {
         'ultrachat-train': f'{bin_data_dir}/ultrachat_train.bin',
@@ -75,11 +80,11 @@ class CPTDataset(_MemmapDataset):
         assert rehersal_rate <= 1.0
         self.rehersal_rate = rehersal_rate
         # self.rehersal_data = _MemmapDataset(block_size, _get_bin('rehersal', 'qwen-rpj-train'), 1.0)
-        self.rehersal_data = _MemmapDataset(block_size, _get_bin('rehersal', 'olmo-rpj-train'), 1.0)
+        self.rehersal_data = _MemmapDataset(block_size, _get_bin('rehersal', 'qwenMOE-rpj-train'), 1.0)
 	# self.rehersal_data = _MemmapDataset(block_size, _get_bin('rehersal', 'rpj-train'), 1.0)
         super().__init__(block_size,
                             # _get_bin('quality', 'rephrase'),
-                            _get_bin('quality', 'quality_full_raw9_olmo'),
+                            _get_bin('quality', 'quality_full_raw9_qwenMOE'),
                             subsample_ratio)
 
     def __len__(self):
@@ -100,7 +105,7 @@ def get_task_data_module(task_name: str,
     if task_name == 'quality':
         train = CPTDataset(block_size, rehersal_rate, subsample_ratio)
         #val = _MemmapDataset(block_size, _get_bin('rehersal', 'qwen-rpj-test'), 1.0)
-        val = _MemmapDataset(block_size, _get_bin('rehersal', 'olmo-rpj-test'), 1.0)
+        val = _MemmapDataset(block_size, _get_bin('rehersal', 'qwenMOE-rpj-test'), 1.0)
 	# val = _MemmapDataset(block_size, _get_bin('rehersal', 'rpj-test'), 1.0)
         return dict(train_dataset=train, eval_dataset=val)
     if task_name == 'instruct':
@@ -115,7 +120,7 @@ if __name__ == '__main__':
     from transformers import AutoTokenizer
     # tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.1-8B", use_fast=True)
     #tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-4B", use_fast=True)
-    tokenizer = AutoTokenizer.from_pretrained("allenai/Olmo-3-1025-7B", use_fast=True)
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen3-30B-A3B-Base", use_fast=True)
     tokenizer.model_max_length=2**20 # this is to hide the token_len>128K wraning
 
     block_size = 2048

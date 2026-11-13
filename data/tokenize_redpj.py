@@ -13,7 +13,7 @@ from datasets import load_dataset, Dataset
 class TokenizeConfig:
     local_text_file: Optional[str] = field(default=None)
     #tokenizer_model_name: Optional[str] = field(default='Qwen/Qwen2.5-3B')
-    tokenizer_model_name: Optional[str] = field(default='allenai/Olmo-3-1025-7B')
+    tokenizer_model_name: Optional[str] = field(default='Qwen/Qwen3-30B-A3B-Base')
     #load_dataset_path: Optional[str] = field(default='togethercomputer/RedPajama-Data-1T-Sample')
     load_dataset_path: Optional[str] = field(default='ZengXiangyu/RedPajama-Data-1T-Sample')
     num_proc: Optional[int] = field(default=16)
@@ -37,7 +37,7 @@ class TokenizeConfig:
 
         if self.load_dataset_path in [
             "togethercomputer/RedPajama-Data-1T",
-	    "ZengXiangyu/RedPajama-Data-1T-Sample",
+	        "ZengXiangyu/RedPajama-Data-1T-Sample",
             "togethercomputer/RedPajama-Data-1T-Sample",
         ]:
             self.text_key = "text"
@@ -122,8 +122,8 @@ def tokenize_and_save(tokenizer: AutoTokenizer, config: TokenizeConfig):
     #write_to_memmap(tokenized_test, f"{filename}_test.bin")
     #write_to_memmap(tokenized_train, f"{filename_prefix}_train_qwen.bin")
     #write_to_memmap(tokenized_test,  f"{filename_prefix}_test_qwen.bin")
-    write_to_memmap(tokenized_train, f"{filename_prefix}_train_olmo.bin")
-    write_to_memmap(tokenized_test,  f"{filename_prefix}_test_olmo.bin")
+    write_to_memmap(tokenized_train, f"{filename_prefix}_train_qwenMOE.bin")
+    write_to_memmap(tokenized_test,  f"{filename_prefix}_test_qwenMOE.bin")
 
 if __name__ == '__main__':
     # parsing input

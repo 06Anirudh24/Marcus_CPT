@@ -5,7 +5,7 @@ conda activate jpy
 
 # setting up default hyperparameters
 subsample_ratio=1.0 # change this parameter to run the scaling plot
-model_name="allenai/Olmo-3-1025-7B"
+model_name="Qwen/Qwen3-30B-A3B-Base"
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -28,12 +28,12 @@ pretty_name=$(echo "$pretty_name" | sed 's/-//g')
 grad_acc=$((bs / 2))
 # Then, use an if-else statement to set the run_name
 if [ "$subsample_ratio" = "1.0" ]; then
-    run_name="Olmo_4e5_raw-lr${lr}-rr${rr}-epochs${epochs}-bs${bs}-wd${wd}-warmup${warmup}-${pretty_name}"
+    run_name="qwenMOE_5e5_raw-lr${lr}-rr${rr}-epochs${epochs}-bs${bs}-wd${wd}-warmup${warmup}-${pretty_name}"
 else
     run_name="scaling-subsample_ratio${subsample_ratio}-${task_name}-lr${lr}-rr${rr}-epochs${epochs}-bs${bs}-wd${wd}-warmup${warmup}-${pretty_name}"
 fi
 echo "Running experiment with run name: $run_name"
-output_dir="/share/goyal/aa2886/Olmo_4e5_raw"
+output_dir="/share/goyal/aa2886/qwenMOE_5e5_raw"
 
 # To run multiple sbatches 
 export MASTER_ADDR=127.0.0.1
@@ -68,4 +68,4 @@ python -m torch.distributed.run --nproc_per_node=2 --master_addr="$MASTER_ADDR" 
     --lr_scheduler_type="cosine" \
     --log_level="info" \
     --fsdp="hybrid_shard auto_wrap" \
-    --fsdp_config="/home/aa2886/Marcus_CPT/scripts/config/olmo_fsdp_config.json"
+    --fsdp_config="/home/aa2886/Marcus_CPT/scripts/config/qwenMOE_fsdp_config.json"
